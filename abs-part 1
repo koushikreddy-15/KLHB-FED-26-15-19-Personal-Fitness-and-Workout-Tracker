@@ -1,0 +1,11 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.*;
+
+// Represents a single logged exercise/workout entry
+class Workout {
+    String exerciseName;
+    int sets;
+    int reps;
+    int durationMinutes;
+    double caloriesBurned;
