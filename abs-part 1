@@ -22,8 +22,26 @@ Workout(String exerciseName, int sets, int reps, int durationMinutes, double cal
     String toFileLine() {
         return exerciseName + "," + sets + "," + reps + "," + durationMinutes + "," + caloriesBurned;
     }
+
 static Workout fromFileLine(String line) {
         String[] parts = line.split(",");
         return new Workout(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[2]),
                 Integer.parseInt(parts[3]), Double.parseDouble(parts[4]));
+    }
+@Override
+    public String toString() {
+        return String.format("%-15s Sets: %-3d Reps: %-3d Duration: %-3d min  Calories: %.2f",
+                exerciseName, sets, reps, durationMinutes, caloriesBurned);
+    }
+}
+
+class User {
+    String name;
+    double weightKg;
+    double heightM;
+
+    User(String name, double weightKg, double heightM) {
+        this.name = name;
+        this.weightKg = weightKg;
+        this.heightM = heightM;
     }
