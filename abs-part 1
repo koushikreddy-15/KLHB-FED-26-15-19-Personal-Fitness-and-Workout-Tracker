@@ -9,3 +9,21 @@ class Workout {
     int reps;
     int durationMinutes;
     double caloriesBurned;
+
+Workout(String exerciseName, int sets, int reps, int durationMinutes, double caloriesBurned) {
+        this.exerciseName = exerciseName;
+        this.sets = sets;
+        this.reps = reps;
+        this.durationMinutes = durationMinutes;
+        this.caloriesBurned = caloriesBurned;
+    }
+
+    // Convert workout details into a line for file storage
+    String toFileLine() {
+        return exerciseName + "," + sets + "," + reps + "," + durationMinutes + "," + caloriesBurned;
+    }
+static Workout fromFileLine(String line) {
+        String[] parts = line.split(",");
+        return new Workout(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[2]),
+                Integer.parseInt(parts[3]), Double.parseDouble(parts[4]));
+    }
