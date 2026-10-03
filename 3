@@ -1,0 +1,16 @@
+   
+// Represents the logged-in user and their basic body stats
+class User {
+    String name;
+    double weightKg;
+    double heightM;
+
+    User(String name, double weightKg, double heightM) {
+        this.name = name;
+        this.weightKg = weightKg;
+        this.heightM = heightM;
+    }
+
+    double calculateBMI() {
+        return weightKg / (heightM * heightM);
+    }
