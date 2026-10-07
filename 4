@@ -1,0 +1,16 @@
+public class FitnessTracker {
+
+    static ArrayList<Workout> workoutLog = new ArrayList<>();
+    static final String FILE_NAME = "fitness_log.txt";
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        loadFromFile();
+
+        System.out.println("===== Personal Fitness & Workout Tracker =====");
+        System.out.print("Enter your name: ");
+        String name = sc.nextLine();
+        System.out.print("Enter your weight (kg): ");
+        double weight = Double.parseDouble(sc.nextLine());
+        System.out.print("Enter your height (m): ");
+        double height = Double.parseDouble(sc.nextLine());
