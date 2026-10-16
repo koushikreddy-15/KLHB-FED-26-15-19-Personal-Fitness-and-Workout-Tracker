@@ -1,0 +1,26 @@
+
+import java.util.*;
+import java.io.*;
+import java.nio.file.*;
+import java.time.LocalDate;
+import java.util.stream.*;
+
+// Module 4: Interface
+interface Trackable {
+    double calories();
+}
+
+// Module 4: Class and object
+class Workout implements Comparable<Workout>, Trackable {
+    private int id, duration;
+    private String activity, intensity;
+    private double weight;
+    private LocalDate date;
+
+    static int nextId = 1;
+    static final int GOAL = 150;
+
+    // Default constructor
+    Workout() {
+        this("Walking", 30, 60, "Medium");
+    }
