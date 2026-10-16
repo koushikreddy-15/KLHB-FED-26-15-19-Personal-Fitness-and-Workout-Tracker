@@ -1,0 +1,35 @@
+ // Module 3: 2D array and nested loops
+    static void weeklyReport() {
+        int[][] data = new int[7][2];
+        LocalDate today = LocalDate.now();
+
+        for (Workout w : workouts) {
+            long days = java.time.temporal.ChronoUnit.DAYS
+                .between(w.date, today);
+            if (days >= 0 && days < 7) {
+                int row = 6 - (int) days;
+                data[row][0] += w.getDuration();
+                data[row][1] += (int) w.calories();
+            }
+        }
+
+        for (int r = 0; r < 7; r++) {
+            System.out.print(today.minusDays(6 - r) + ": ");
+            for (int c = 0; c < 2; c++)
+                System.out.print(data[r][c] + " ");
+            System.out.println();
+        }
+    }
+
+    // Module 5: File input/output and try-with-resources
+    static void save() {
+        try (BufferedWriter bw = Files.newBufferedWriter(file)) {
+            for (Workout w : workouts) {
+                bw.write(w.toFile());
+                bw.newLine();
+            }
+            System.out.println("Data saved.");
+        } catch (IOException | SecurityException e) {
+            System.out.println("Save error: " + e.getMessage());
+        }
+    }
