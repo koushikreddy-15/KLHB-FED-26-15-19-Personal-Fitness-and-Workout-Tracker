@@ -2,7 +2,7 @@ Personal Fitness and Workout Tracker
 koushik reddy (2620030503)
 Hari (2620030400)
 
-INSTRUCTOR: Mr Sree Ramamurthy
+INSTRUCTOR: Dr Sree Ramamurthy
 
 ABSTRACT:
 The Personal Fitness & Workout Tracker is a Java-based fitness management system designed to help users plan, monitor, and improve their exercise routines in a simple and organized way.
