@@ -1,0 +1,17 @@
+ static void delete() {
+        Workout w = find(number("Workout ID: "));
+        if (w != null) {
+            workouts.remove(w);
+            refresh();
+            System.out.println("Deleted.");
+        } else System.out.println("Not found.");
+    }
+
+    // Module 3: Summation, average and recursion
+    static void summary() {
+        int minutes = 0;
+        double calories = 0;
+        for (Workout w : workouts) {
+            minutes += w.getDuration();
+            calories += w.calories();
+        }
