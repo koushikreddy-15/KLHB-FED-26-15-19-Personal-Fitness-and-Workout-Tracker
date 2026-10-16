@@ -1,0 +1,30 @@
+public class FitnessTracker {
+    static Scanner sc = new Scanner(System.in);
+    static ArrayList<Workout> workouts = new ArrayList<>();
+    static HashSet<String> activities = new HashSet<>();
+    static HashMap<String, Integer> counts = new HashMap<>();
+    static Path file = Paths.get("workouts.txt");
+
+    public static void main(String[] args) {
+        load();
+        int choice;
+        do {
+            menu();
+            choice = number("Choice: ");
+            switch (choice) {
+                case 1: add(); break;
+                case 2: view(); break;
+                case 3: search(); break;
+                case 4: update(); break;
+                case 5: delete(); break;
+                case 6: summary(); break;
+                case 7: bmi(); break;
+                case 8: sort(); break;
+                case 9: streamReport(); break;
+                case 10: weeklyReport(); break;
+                case 11: save(); break;
+                case 0: save(); System.out.println("Goodbye!"); break;
+                default: System.out.println("Invalid choice.");
+            }
+        } while (choice != 0);
+    }
