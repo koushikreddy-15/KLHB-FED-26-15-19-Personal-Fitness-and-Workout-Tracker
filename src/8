@@ -1,0 +1,32 @@
+ double avg = workouts.isEmpty() ? 0 :
+                     (double) minutes / workouts.size();
+
+        System.out.println("Workouts: " + workouts.size());
+        System.out.println("Total minutes: " + minutes);
+        System.out.printf("Average duration: %.1f%n", avg);
+        System.out.printf("Calories burned: %.1f%n", calories);
+        System.out.println("Goal remaining: " +
+                           Math.max(0, Workout.GOAL - minutes));
+        System.out.printf("Recursive calorie total: %.1f%n",
+                          recursive(0));
+    }
+
+    static double recursive(int index) {
+        if (index >= workouts.size()) return 0;
+        return workouts.get(index).calories() + recursive(index + 1);
+    }
+
+    static void bmi() {
+        double w = decimal("Weight (kg): ");
+        double h = decimal("Height (metres): ");
+        if (w <= 0 || h <= 0) {
+            System.out.println("Values must be positive.");
+            return;
+        }
+        double bmi = w / (h * h);
+        System.out.printf("BMI: %.2f%n", bmi);
+        String result = bmi < 18.5 ? "Underweight" :
+                        bmi < 25 ? "Normal range" :
+                        bmi < 30 ? "Overweight" : "Obesity range";
+        System.out.println(result);
+    }
