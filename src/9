@@ -1,0 +1,35 @@
+ // Module 5: Sorting, searching and StringBuilder
+    static void sort() {
+        Collections.sort(workouts);
+        view();
+
+        String[] names = workouts.stream()
+            .map(Workout::getActivity).toArray(String[]::new);
+        Arrays.sort(names, String.CASE_INSENSITIVE_ORDER);
+        System.out.println("Sorted activities: " +
+                           Arrays.toString(names));
+
+        String target = text("Search activity: ");
+        int index = Arrays.binarySearch(names, target,
+                                      String.CASE_INSENSITIVE_ORDER);
+        System.out.println(index >= 0 ? "Found." : "Not found.");
+
+        StringBuilder sb = new StringBuilder("Activities: ");
+        for (String name : names) sb.append(name).append(" ");
+        System.out.println(sb);
+
+        StringBuffer buffer = new StringBuffer("Stay ");
+        buffer.append("Fit!");
+        System.out.println(buffer);
+    }
+
+    // Module 6: Collections and streams
+    static void refresh() {
+        activities.clear();
+        counts.clear();
+        for (Workout w : workouts) {
+            activities.add(w.getActivity());
+            String key = w.getActivity().toLowerCase();
+            counts.put(key, counts.getOrDefault(key, 0) + 1);
+        }
+    }
