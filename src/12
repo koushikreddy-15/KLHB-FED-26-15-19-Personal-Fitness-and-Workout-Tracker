@@ -1,0 +1,41 @@
+static void load() {
+    if (!Files.exists(file))
+        return;
+
+    try (BufferedReader br = Files.newBufferedReader(file)) {
+        String line;
+
+        while ((line = br.readLine()) != null) {
+            try {
+                String[] p = line.split("\\|", -1);
+
+                if (p.length != 6)
+                    continue;
+
+                int id = Integer.parseInt(p[0]);
+                LocalDate date = LocalDate.parse(p[1]);
+                String activity = p[2];
+                int duration = Integer.parseInt(p[3]);
+                double weight = Double.parseDouble(p[4]);
+                String intensity = p[5];
+
+                if (id <= 0 || duration <= 0 ||
+                    !Double.isFinite(weight) || weight <= 0 ||
+                    activity.isEmpty() || intensity.isEmpty())
+                    continue;
+
+                // Use the parameterized constructor
+                Workout w = new Workout(
+                    activity, duration, weight, intensity);
+
+                // Restore the saved ID and date
+                w.setId(id);
+                w.setDate(date);
+
+                workouts.add(w);
+                Workout.nextId = Math.max(Workout.nextId, id + 1);
+
+            } catch (RuntimeException e) {
+                System.out.println("Skipping invalid record: " + line);
+            }
+        }
