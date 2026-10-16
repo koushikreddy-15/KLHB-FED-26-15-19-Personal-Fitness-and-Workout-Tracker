@@ -1,0 +1,27 @@
+ static void streamReport() {
+        refresh();
+        System.out.println("Unique activities: " + activities);
+        System.out.println("Activity counts: " + counts);
+
+        workouts.stream()
+            .filter(w -> w.getDuration() >= 30)
+            .forEach(System.out::println);
+
+        long count = workouts.stream()
+            .filter(w -> w.getDuration() >= 30).count();
+        double total = workouts.stream()
+            .map(Workout::calories)
+            .reduce(0.0, Double::sum);
+
+        List<String> names = workouts.stream()
+            .map(Workout::getActivity)
+            .distinct().sorted()
+            .collect(Collectors.toList());
+
+        String report = names.stream()
+            .collect(Collectors.joining(", "));
+
+        System.out.println("Workouts >= 30 min: " + count);
+        System.out.printf("Total calories: %.1f%n", total);
+        System.out.println("Activities: " + report);
+    }
