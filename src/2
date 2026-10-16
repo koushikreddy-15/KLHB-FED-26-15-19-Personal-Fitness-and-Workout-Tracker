@@ -1,0 +1,53 @@
+ // Parameterized constructor
+    Workout(String a, int d, double w, String i) {
+        id = nextId++;
+        activity = a;
+        duration = d;
+        weight = w;
+        intensity = i;
+        date = LocalDate.now();
+    }
+
+    void setId(int id) {
+    this.id = id;
+}
+
+void setDate(LocalDate date) {
+    this.date = date;
+}
+
+    // Accessors and mutator
+    int getId() { return id; }
+    int getDuration() { return duration; }
+    String getActivity() { return activity; }
+
+    void setDuration(int d) {
+        if (d <= 0)
+            throw new IllegalArgumentException("Invalid duration");
+        duration = d;
+    }
+
+    @Override
+    public double calories() {
+        double met = intensity.equalsIgnoreCase("High") ? 8 :
+                     intensity.equalsIgnoreCase("Low") ? 2.5 : 5;
+        return met * 3.5 * weight * duration / 200;
+    }
+
+    @Override
+    public int compareTo(Workout w) {
+        return Integer.compare(duration, w.duration);
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+            "%d | %s | %s | %d min | %.1f calories",
+            id, date, activity, duration, calories());
+    }
+
+    String toFile() {
+        return id + "|" + date + "|" + activity + "|" +
+               duration + "|" + weight + "|" + intensity;
+    }
+}
