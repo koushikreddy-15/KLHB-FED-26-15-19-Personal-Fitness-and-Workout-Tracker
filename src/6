@@ -1,0 +1,39 @@
+ workouts.add(new Workout(a, d, w, i));
+        refresh();
+        System.out.println("Workout added.");
+    }
+
+    static void view() {
+        if (workouts.isEmpty()) {
+            System.out.println("No workouts found.");
+            return;
+        }
+        for (Workout w : workouts)
+            System.out.println(w);
+    }
+
+    static Workout find(int id) {
+        for (Workout w : workouts)
+            if (w.getId() == id) return w;
+        return null;
+    }
+
+    static void search() {
+        Workout w = find(number("Workout ID: "));
+        System.out.println(w == null ? "Not found." : w);
+    }
+
+    static void update() {
+        Workout w = find(number("Workout ID: "));
+        if (w == null) {
+            System.out.println("Not found.");
+            return;
+        }
+        try {
+            w.setDuration(number("New duration: "));
+            System.out.println("Updated.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        refresh();
+    }
