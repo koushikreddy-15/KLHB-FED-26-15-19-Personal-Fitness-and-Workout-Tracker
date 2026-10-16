@@ -1,0 +1,19 @@
+static void menu() {
+        System.out.println("\n=== FITNESS TRACKER ===");
+        System.out.println("1.Add  2.View  3.Search  4.Update");
+        System.out.println("5.Delete  6.Summary  7.BMI  8.Sort");
+        System.out.println("9.Stream report  10.Weekly report");
+        System.out.println("11.Save  0.Exit");
+    }
+
+    // Module 1: Console input and exception handling
+    static int number(String msg) {
+        while (true) {
+            try {
+                System.out.print(msg);
+                return Integer.parseInt(sc.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.println("Enter a valid integer.");
+            }
+        }
+    }
