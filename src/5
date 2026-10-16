@@ -1,0 +1,35 @@
+static double decimal(String msg) {
+        while (true) {
+            try {
+                System.out.print(msg);
+                double n = Double.parseDouble(sc.nextLine().trim());
+                if (Double.isFinite(n)) return n;
+            } catch (NumberFormatException e) {
+                System.out.println("Enter a valid number.");
+            }
+            System.out.println("Invalid input.");
+        }
+    }
+
+    static String text(String msg) {
+        System.out.print(msg);
+        return sc.nextLine().trim();
+    }
+
+    // Module 2: Selection and validation
+    static void add() {
+        String a = text("Activity: ").replace("|", "/");
+        int d = number("Duration (minutes): ");
+        double w = decimal("Weight (kg): ");
+        String i = text("Intensity (Low/Medium/High): ");
+
+        if (a.isEmpty() || d <= 0 || w <= 0) {
+            System.out.println("Invalid workout details.");
+            return;
+        }
+        if (!(i.equalsIgnoreCase("Low") ||
+              i.equalsIgnoreCase("Medium") ||
+              i.equalsIgnoreCase("High"))) {
+            System.out.println("Invalid intensity.");
+            return;
+        }
